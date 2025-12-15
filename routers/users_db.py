@@ -121,9 +121,3 @@ def search_user(field: str, key):
         return User(**user_schema(user))
     except:
         return {"error": "No se ha encontrado el usuario"}
-
-
-
-
-
-#git 1
