@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copia el archivo de requisitos e instala las dependencias
 COPY requirements.txt . 
-RUN pip install --no-cache-dir -r requirements.txt 
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copia el resto del código de la aplicación
 COPY . . 
@@ -16,4 +16,5 @@ EXPOSE 8000
 
 # Comando para ejecutar la aplicación (cambia 'main:app' si tu módulo principal y objeto de FastAPI son diferentes)
 # Cambia tu última línea por esta (usa la variable de entorno $PORT)
-CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-10000}"]
+# Esta línea busca el ejecutable de python y luego el módulo uvicorn
+CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "10000"]
